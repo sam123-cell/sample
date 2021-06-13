@@ -27,7 +27,7 @@
       
     - name: start the container
       docker_container:
-        - name: myapp1
+        - name: myapp
           image: rs2788087/myapp
           state: present
           published_ports:
