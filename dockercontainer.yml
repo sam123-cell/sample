@@ -1,0 +1,19 @@
+---
+- hosts: server1
+  become: yes
+  tasks:
+   - name: install python pip module
+	   apt: name=python-pip state=present
+	 - name: install docker
+	   apt: name=docker.io state=present
+	 - name: start docker
+	   service: name=docker state=started enabled=yes
+	 - name: install docker-py
+	   pip: name=docker-py state=present
+	 - name: start the container
+	   docker_container:
+	      - name: myapp1
+		      image: rs2788087/myapp
+			    state: started
+			    published_ports:
+			        - 0.0.0.0:8080:8080
